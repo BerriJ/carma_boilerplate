@@ -13,14 +13,15 @@ namespace py = pybind11;
 // Carma
 #include <carma>
 
-PYBIND11_MODULE(my_carma_module, m)
+PYBIND11_MODULE(onion, m)
 {
-    m.doc() = "pybind11 my_carma_module plugin"; // optional module docstring
+    m.doc() = "pybind11 onion plugin"; // optional module docstring
 
     m.def("add", &my_namespace::add, "A function that adds two matrices");
 
     py::class_<Pet>(m, "Pet")
         .def(py::init<const std::string &>())
         .def("setName", &Pet::setName)
-        .def("getName", &Pet::getName);
+        .def("getName", &Pet::getName)
+        .def_readwrite("name", &Pet::name);
 }
